@@ -25,7 +25,7 @@ root@76364d5cbc52:/code# python manage.py migrate
 root@76364d5cbc52:/code# python manage.py test
 ```
 
-I tried to get some basic coverage with my tests (model, unit, integration) but didn't go crazy.
+I tried to get some basic coverage with my [tests](https://github.com/douglas-c-thomas/wassignment/tree/master/src/tests) (model, unit, integration) but didn't go crazy.
 
 ### Points of interest
 - The API URLs are captured [here](https://github.com/douglas-c-thomas/wassignment/blob/master/src/bls_dataset/urls.py).
