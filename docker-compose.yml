@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dug
+      POSTGRES_PASSWORD: dug
+      POSTGRES_DB: django
+    volumes:
+      - ./.docker/data:/var/lib/postgresql/data
+
+  app:
+    container_name: app
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_SETTINGS_MODULE: wassignment.settings
+      DATABASE_URL: postgres://dug:dug@db:5432/django
+      GOOGLE_APPLICATION_CREDENTIALS: google-application-credentials.json
+    volumes:
+      - ./src:/code
+    command: /bin/bash /wait-for-it.sh db:5432 -t 0 -- bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
