@@ -46,11 +46,11 @@ I tested these thoroughly myself in Postman as well.  The following endpoints ar
 - The endpoint returns all queries executed and persisted thus far, as well as their associative result sets.
 
 #### Query GET (uuid)
-- http://0.0.0.0:8000/bls-dataset/queries/<uuid>
+- http://0.0.0.0:8000/bls-dataset/queries/uuid
 - The endpoint returns a specific previoiusly executed query and its result set.
   
 #### Query GET (name)
-- http://0.0.0.0:8000/bls-dataset/queries?name=<name>
+- http://0.0.0.0:8000/bls-dataset/queries?name=name
 - The endpoint returns a set of previoiusly executed queries that match by name, along with their associative result sets.
   
 The API endpoints and filtering possibilities are endless, but this should cover the basics.
