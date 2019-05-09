@@ -30,12 +30,12 @@ I tried to get some basic coverage with my [tests](https://github.com/douglas-c-
 ### Points of interest
 - The API URLs are captured [here](https://github.com/douglas-c-thomas/wassignment/blob/master/src/bls_dataset/urls.py).
 - The API requests are handled in the [views](https://github.com/douglas-c-thomas/wassignment/blob/master/src/bls_dataset/views.py).
-- The data [serializer](https://github.com/douglas-c-thomas/wassignment/blob/master/src/bls_dataset/serializers.py#L20) for the Query POST delegates to a data handler to process the Big Query request.  In this case, a [UnemploymentCPSDatasetHandler](https://github.com/douglas-c-thomas/wassignment/blob/master/src/dataset_handlers/unemployment_cps_dataset_handler.py#L9) is created via a psuedo-factory method and processes the requests against the [bls.unemployment_cps](https://bigquery.cloud.google.com/results/data-studio-175515:US.bquijob_1da9ab00_16a97c44bd2?pli=1) dataset.
+- The data [serializer](https://github.com/douglas-c-thomas/wassignment/blob/master/src/bls_dataset/serializers.py#L20) for the Query POST delegates to a data handler to process the Big Query request.  In this case, an [UnemploymentCPSDatasetHandler](https://github.com/douglas-c-thomas/wassignment/blob/master/src/dataset_handlers/unemployment_cps_dataset_handler.py#L9) is created via a psuedo-factory method and processes the requests against the [bls.unemployment_cps](https://bigquery.cloud.google.com/results/data-studio-175515:US.bquijob_1da9ab00_16a97c44bd2?pli=1) dataset.
 - I do give a nod to security by [requiring a Bearer token in the header](https://github.com/douglas-c-thomas/wassignment/blob/master/src/bls_dataset/permissions.py#L4).  IRL, the API_KEY would be kept in a Kubernetes secrets file, or the architecture would support Apps with a Client ID / Client Secret pair for proper OAuth.
 - To show some level of request validation, I specified that [limiting query results to 666](https://github.com/douglas-c-thomas/wassignment/blob/master/src/bls_dataset/serializers.py#L34) was not permissible.  This, of course, could be used to guard against throttling, but since I expect that large limits will be used to test resiliancy, I didn't set an upper boundary.
 
 ### The APIs themselves
-I tested these thoroughly myself in Postman as well, but the following endpoints are supported
+I tested these thoroughly myself in Postman as well.  The following endpoints are supported:
 
 #### Query POST
 - http://0.0.0.0:8000/bls-dataset/queries
